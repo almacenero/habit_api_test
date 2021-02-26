@@ -41,7 +41,6 @@ describe("insert", () => {
   });
   test("should insert many doc into collection", async () => {
     const drugs = db.collection("drugs");
-    console.log("drugs ---------", drugs);
 
     await drugs.insertMany(collectionFixtures);
   });
