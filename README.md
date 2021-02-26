@@ -4,6 +4,10 @@ Pharmacy api for test
 
 ## Node and Express api server
 
+##Clear and Populate Data Base
+
+To clean the database and populate, run npm test
+
 ##Intrucciones:
 
 Ejercicio 2.

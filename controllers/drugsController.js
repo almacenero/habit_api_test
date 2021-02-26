@@ -9,7 +9,7 @@ const drugsList = async (req, res) => {
   }
 };
 
-const updateDrug = async (req, res) => {
+const createDrug = async (req, res) => {
   const drug = Drug({
     name: req.body.name,
     typeDrug: req.body.typeDrug,
@@ -28,6 +28,7 @@ const updateDrug = async (req, res) => {
 const findDrug = async (req, res) => {
   try {
     const drug = await Drug.findById(req.params.id);
+
     res.json(drug);
   } catch (error) {
     res.json({ message: error });
@@ -63,7 +64,7 @@ const deleteDrug = async (req, res) => {
 
 module.exports = {
   drugsList,
-  updateDrug,
+  createDrug,
   findDrug,
   findOneDrugAndUpdate,
   deleteDrug,
