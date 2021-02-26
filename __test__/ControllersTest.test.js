@@ -1,6 +1,28 @@
 const { MongoClient } = require("mongodb");
 require("dotenv/config");
-
+const collectionFixtures = [
+  {
+    name: "1",
+    typeDrug: "ggggggggg",
+    amount: 15,
+    price: 5,
+    localization: "Ambato, centro",
+  },
+  {
+    name: "2",
+    typeDrug: "ggggggggg",
+    amount: 15,
+    price: 5,
+    localization: "Ambato, centro",
+  },
+  {
+    name: "3",
+    typeDrug: "ggggggggg",
+    amount: 15,
+    price: 5,
+    localization: "Ambato, centro",
+  },
+];
 describe("insert", () => {
   let connection;
   let db;
@@ -20,29 +42,6 @@ describe("insert", () => {
   test("should insert many doc into collection", async () => {
     const drugs = db.collection("drugs");
     console.log("drugs ---------", drugs);
-    const collectionFixtures = [
-      {
-        name: "1",
-        typeDrug: "ggggggggg",
-        amount: 15,
-        price: 5,
-        localization: "Ambato, centro",
-      },
-      {
-        name: "2",
-        typeDrug: "ggggggggg",
-        amount: 15,
-        price: 5,
-        localization: "Ambato, centro",
-      },
-      {
-        name: "3",
-        typeDrug: "ggggggggg",
-        amount: 15,
-        price: 5,
-        localization: "Ambato, centro",
-      },
-    ];
 
     await drugs.insertMany(collectionFixtures);
   });
@@ -60,5 +59,18 @@ describe("insert", () => {
       name: "8",
     });
     expect(insertedDrug).toEqual(mockDrug);
+  });
+  test("should delete one doc in collection", async () => {
+    const drugs = db.collection("drugs");
+    const mockDrug = {
+      name: "2",
+      typeDrug: "ggggggggg",
+      amount: 15,
+      price: 5,
+      localization: "Ambato, centro",
+    };
+    await drugs.deleteOne(mockDrug);
+
+    expect(collectionFixtures.length).toEqual(3);
   });
 });
