@@ -2,11 +2,16 @@ const express = require("express");
 const router = express.Router();
 const Drug = require("../models/Drug");
 
-router.get("/", (req, res) => {
-  res.send("Drugs lists!");
+router.get("/", async (req, res) => {
+  try {
+    const drugs = await Drug.find();
+    res.json(drugs);
+  } catch (error) {
+    res.json({ message: error });
+  }
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const drug = Drug({
     name: req.body.name,
     typeDrug: req.body.typeDrug,
@@ -14,15 +19,12 @@ router.post("/", (req, res) => {
     price: req.body.price,
     localization: req.body.localization,
   });
-
-  drug
-    .save()
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((error) => {
-      message: error;
-    });
+  try {
+    const savedDrug = await drug.save();
+    res.json(savedDrug);
+  } catch (error) {
+    res.json({ message: error });
+  }
 });
 
 module.exports = router;
