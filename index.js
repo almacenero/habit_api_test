@@ -2,7 +2,10 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 require("dotenv/config");
+
+app.use(bodyParser.json());
 
 const homeRoute = require("./routes/home");
 const drugRoute = require("./routes/drugs");
