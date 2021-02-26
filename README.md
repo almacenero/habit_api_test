@@ -21,3 +21,7 @@ GET->Traer un elemento por id o nombre
 PUT->Editar un documento de la API (por ID)
 DELETE-> Eliminar un documento de la API (por ID)
 Podrá utilizar SQLITE, MONGODB, O OBJETOS en memoria para almacenar los datos de la API.
+
+##Notes:
+
+I use local IDE eslinter, and prettier
